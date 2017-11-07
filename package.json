@@ -1,0 +1,22 @@
+{
+  "name": "shopping-list",
+  "version": "1.0.0",
+  "description": "Dessarrollo de una App usando Electron JS",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jpablopachar/shopping-list.git"
+  },
+  "author": "Juan Pablo Pachar (https://www.facebook.com/jpablopachar)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jpablopachar/shopping-list/issues"
+  },
+  "homepage": "https://github.com/jpablopachar/shopping-list#readme",
+  "dependencies": {
+    "electron": "^1.7.9"
+  }
+}
