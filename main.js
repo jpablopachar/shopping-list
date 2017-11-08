@@ -72,3 +72,27 @@ const mainMenuTemplate = [
         ]
     }
 ];
+
+// Si es mac, agregamos un objeto vacio al menú
+if (process.platform == 'darwin') {
+    mainMenuTemplate.unshift({});
+}
+
+// Agregamos las herramientas de desarrollador si no está en producción
+if (process.env.NODE_ENV !== 'production') {
+    mainMenuTemplate.push({
+        label: 'Herramientas de desarrollador',
+        submenu: [
+            {
+                label: 'Palanca para herramientas de desarrollador',
+                accelerator: process.platform == 'darwin' ? 'Command+I' : 'Ctrl+I',
+                click(item, focusedWindow) {
+                    focusedWindow.toggleDevTools();
+                }
+            },
+            {
+                role: 'reload'
+            }
+        ]
+    })
+}
