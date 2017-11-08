@@ -4,6 +4,7 @@ const path = require('path');
 const {app, BrowserWindow, Menu} = electron;
 
 let mainWindow;
+let addWindow;
 
 // Escuchar para que la aplicación esté lista
 app.on('ready', function(){
@@ -16,11 +17,36 @@ app.on('ready', function(){
         slashes: true
     }));
 
+    // Salir de la aplicación cuando se cierre una ventana
+    mainWindow.on('closed', function() {
+        app.quit();
+    });
+
     // Crear menú desde la plantilla
     const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
     // Insertar Menú
     Menu.setApplicationMenu(mainMenu);
 });
+
+// Creación de una nueva ventana
+function createAddWindow() {
+    // Crea una nueva pantalla
+    addWindow = new BrowserWindow({
+        width: 300,
+        height: 200,
+        title: 'Add Shopping List Item'
+    });
+    // Carga html en la pantalla
+    addWindow.loadURL(url.format({
+        pathname: path.join(__dirname, 'addWindow.html'),
+        protocol: 'file',
+        slashes: true
+    }));
+    // Manejador de recolector de basura
+    addWindow.on('close', function() {
+        addWindow = null;
+    });
+}
 
 // Creación del menú principal
 const mainMenuTemplate = [
@@ -28,7 +54,10 @@ const mainMenuTemplate = [
         label: 'File',
         submenu: [
             {
-                label: 'Add Item'
+                label: 'Add Item',
+                click() {
+                    createAddWindow();
+                }
             },
             {
                 label: 'Clear Items'
@@ -36,7 +65,7 @@ const mainMenuTemplate = [
             {
                 label: 'Quit',
                 accelerator: process.platform == 'darwin' ? 'Command+Q' : 'Ctrl+Q',
-                click(){
+                click() {
                     app.quit();
                 }
             }
