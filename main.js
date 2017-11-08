@@ -1,7 +1,7 @@
 const electron = require('electron');
 const url = require('url');
 const path = require('path');
-const {app, BrowserWindow, Menu} = electron;
+const {app, BrowserWindow, Menu, ipcMain} = electron;
 
 let mainWindow;
 let addWindow;
@@ -47,6 +47,13 @@ function createAddWindow() {
         addWindow = null;
     });
 }
+
+// Captura los elemento que se agregan
+ipcMain.on('item:add', function(e, item) {
+    console.log(item);
+    mainWindow.webContents.send('item:add', item);
+    addWindow.close();
+})
 
 // Creación del menú principal
 const mainMenuTemplate = [
