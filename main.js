@@ -34,7 +34,7 @@ function createAddWindow() {
     addWindow = new BrowserWindow({
         width: 300,
         height: 200,
-        title: 'Add Shopping List Item'
+        title: 'Agregar elemento a la lista de compras'
     });
     // Carga html en la pantalla
     addWindow.loadURL(url.format({
@@ -54,16 +54,16 @@ const mainMenuTemplate = [
         label: 'File',
         submenu: [
             {
-                label: 'Add Item',
+                label: 'Agregar elemento',
                 click() {
                     createAddWindow();
                 }
             },
             {
-                label: 'Clear Items'
+                label: 'Limpiar elementos'
             },
             {
-                label: 'Quit',
+                label: 'Cerrar',
                 accelerator: process.platform == 'darwin' ? 'Command+Q' : 'Ctrl+Q',
                 click() {
                     app.quit();
