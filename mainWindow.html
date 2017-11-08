@@ -6,7 +6,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 </head>
 <body>
-    <h1>Lista de compras</h1>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="" class="brand-logo cener">Lista de compras</a>
+        </div>
+    </nav>
     <ul></ul>
 
     <script>
@@ -16,7 +20,12 @@
 
         // Agrega elementos
         ipcRenderer.on('item:add', function(e, item) {
+            ul.className = 'collection';
+
             const li = document.createElement('li');
+
+            li.className = 'collection-item';
+
             const itemText = document.createTextNode(item);
 
             li.appendChild(itemText);
@@ -26,6 +35,7 @@
         // Limpia elementos
         ipcRenderer.on('item:clear', function(e, item) {
             ul.innerHTML = '';
+            ul.className = '';
         });
 
         // Eliminar elementos
@@ -33,6 +43,10 @@
 
         function removeItem(e) {
             e.target.remove();
+
+            if (ul.children.length == 0) {
+                ul.className = '';
+            }
         }
     </script>
 </body>

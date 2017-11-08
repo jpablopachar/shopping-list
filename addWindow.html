@@ -6,13 +6,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 </head>
 <body>
-    <form>
-        <div>
-            <label>Ingrese el elemento</label>
-            <input type="text" id="item" autofocus>
-            <button type="submit">Agregar elemento</button>
-        </div>
-    </form>
+    <div class="container">
+        <form>
+            <div>
+                <label>Ingrese el elemento</label>
+                <input type="text" id="item" autofocus>
+                <button type="submit" class="btn waves-effect waves-light">Agregar elemento</button>
+            </div>
+        </form>
+    </div>
     <script>
         const electron = require('electron');
         const {ipcRenderer} = electron;
