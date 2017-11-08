@@ -6,5 +6,33 @@
 </head>
 <body>
     <h1>Lista de compras</h1>
+    <ul></ul>
+
+    <script>
+        const electron = require('electron');
+        const {ipcRenderer} = electron;
+        const ul = document.querySelector('ul');
+
+        // Agrega elementos
+        ipcRenderer.on('item:add', function(e, item) {
+            const li = document.createElement('li');
+            const itemText = document.createTextNode(item);
+
+            li.appendChild(itemText);
+            ul.appendChild(li);
+        });
+
+        // Limpia elementos
+        ipcRenderer.on('item:clear', function(e, item) {
+            ul.innerHTML = '';
+        });
+
+        // Eliminar elementos
+        ul.addEventListener('dblclick', removeItem);
+
+        function removeItem(e) {
+            e.target.remove();
+        }
+    </script>
 </body>
 </html>

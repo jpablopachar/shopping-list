@@ -67,7 +67,10 @@ const mainMenuTemplate = [
                 }
             },
             {
-                label: 'Limpiar elementos'
+                label: 'Limpiar elementos',
+                click() {
+                    mainWindow.webContents.send('item:clear');
+                }
             },
             {
                 label: 'Cerrar',
